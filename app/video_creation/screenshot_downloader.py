@@ -240,10 +240,11 @@ def get_screenshots_of_reddit_posts(reddit_object: dict, screenshot_num: int):
                         # zoom the body of the page
                         page.evaluate("document.body.style.zoom=" + str(zoom))
                         # scroll comment into view
-                        page.locator(f"#t1_{comment['comment_id']}").scroll_into_view_if_needed()
+                        page.evaluate(f'document.querySelector("shreddit-comment[thingid=\'t1_{comment["comment_id"]}\']").removeAttribute("depth");')
+                        page.locator(f"shreddit-comment[thingid=\"t1_{comment['comment_id']}\"]").scroll_into_view_if_needed()
                         # as zooming the body doesn't change the properties of the divs, we need to adjust for the zoom
-                        location = page.locator(f"#t1_{comment['comment_id']}").bounding_box()
-                        for i in location:
+                        location = page.locator(f"shreddit-comment[thingid=\"t1_{comment['comment_id']}\"]").bounding_box()
+                        for i in location:  
                             location[i] = float("{:.2f}".format(location[i] * zoom))
                         page.screenshot(
                             clip=location,

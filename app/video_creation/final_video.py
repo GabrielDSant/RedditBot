@@ -247,6 +247,7 @@ def make_final_video(
             0,
             float(ffmpeg.probe(f"assets/temp/{reddit_id}/mp3/title.mp3")["format"]["duration"]),
         )
+        
     audio_concat = ffmpeg.concat(*audio_clips, a=1, v=0)
     ffmpeg.output(
         audio_concat, f"assets/temp/{reddit_id}/audio.mp3", **{"b:a": "192k"}

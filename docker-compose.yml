@@ -5,6 +5,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./app:/app
+      - ./tiktok:/tiktok
+      - ./steam:/steam
+      - ./twitter:/twitter
     environment:
       - REDDIT_CLIENT_ID=Ul2ZEmaefCVcywgz_2u1lA
       - REDDIT_CLIENT_SECRET=5q_UHHuZGIIfPg17ILWPc9kwtIPSPw

@@ -202,7 +202,7 @@ function install_main(){
     else
         echo "Installing all" 
         install_deps 
-        get_the_bot 
+        # get_the_bot 
         install_python_dep
         install_playwright
     fi
